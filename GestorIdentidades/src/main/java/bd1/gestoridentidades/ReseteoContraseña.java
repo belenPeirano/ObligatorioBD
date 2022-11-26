@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
@@ -32,6 +33,14 @@ public class ReseteoContraseña extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        frNuevaContraseña = new javax.swing.JFrame();
+        pnlNuevaContra = new javax.swing.JPanel();
+        lblNuevaContraseña = new javax.swing.JLabel();
+        lblNuevaContraseña2 = new javax.swing.JLabel();
+        btnConfirmarContraseña = new javax.swing.JButton();
+        txtNuevaContraseña = new javax.swing.JPasswordField();
+        txtNuevaContraseña2 = new javax.swing.JPasswordField();
+        btnConfirmarContraseña1 = new javax.swing.JButton();
         pnlReseteoContra = new javax.swing.JPanel();
         lblResetear = new javax.swing.JLabel();
         txtRespuesta = new javax.swing.JTextField();
@@ -41,14 +50,73 @@ public class ReseteoContraseña extends javax.swing.JFrame {
         txtUsuario = new javax.swing.JTextField();
         btnMostrarPregunta1 = new javax.swing.JButton();
         btnConfirmar = new javax.swing.JButton();
-        pnlNuevaContraseña = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+
+        frNuevaContraseña.setMinimumSize(new java.awt.Dimension(538, 380));
+        frNuevaContraseña.setPreferredSize(new java.awt.Dimension(538, 380));
+        frNuevaContraseña.setResizable(false);
+        frNuevaContraseña.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblNuevaContraseña.setText("Nueva contraseña");
+
+        lblNuevaContraseña2.setText("Repita Nueva Contraseña");
+
+        btnConfirmarContraseña.setText("Confirmar");
+        btnConfirmarContraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarContraseñaActionPerformed(evt);
+            }
+        });
+
+        btnConfirmarContraseña1.setText("Iniciar Sesión");
+        btnConfirmarContraseña1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarContraseña1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlNuevaContraLayout = new javax.swing.GroupLayout(pnlNuevaContra);
+        pnlNuevaContra.setLayout(pnlNuevaContraLayout);
+        pnlNuevaContraLayout.setHorizontalGroup(
+            pnlNuevaContraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNuevaContraLayout.createSequentialGroup()
+                .addContainerGap(39, Short.MAX_VALUE)
+                .addGroup(pnlNuevaContraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlNuevaContraLayout.createSequentialGroup()
+                        .addGroup(pnlNuevaContraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblNuevaContraseña2)
+                            .addComponent(lblNuevaContraseña))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(pnlNuevaContraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNuevaContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNuevaContraseña2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlNuevaContraLayout.createSequentialGroup()
+                        .addComponent(btnConfirmarContraseña)
+                        .addGap(57, 57, 57)
+                        .addComponent(btnConfirmarContraseña1)))
+                .addGap(108, 108, 108))
+        );
+        pnlNuevaContraLayout.setVerticalGroup(
+            pnlNuevaContraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNuevaContraLayout.createSequentialGroup()
+                .addContainerGap(55, Short.MAX_VALUE)
+                .addGroup(pnlNuevaContraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNuevaContraseña)
+                    .addComponent(txtNuevaContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(pnlNuevaContraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNuevaContraseña2)
+                    .addComponent(txtNuevaContraseña2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51)
+                .addGroup(pnlNuevaContraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnConfirmarContraseña)
+                    .addComponent(btnConfirmarContraseña1))
+                .addGap(96, 96, 96))
+        );
+
+        frNuevaContraseña.getContentPane().add(pnlNuevaContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         pnlReseteoContra.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -99,73 +167,21 @@ public class ReseteoContraseña extends javax.swing.JFrame {
         });
         pnlReseteoContra.add(btnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 304, -1, -1));
 
-        jLabel1.setText("Nueva Contraseña");
-
-        jLabel2.setText("Repita Nueva Contraseña");
-
-        jButton1.setText("jButton1");
-
-        javax.swing.GroupLayout pnlNuevaContraseñaLayout = new javax.swing.GroupLayout(pnlNuevaContraseña);
-        pnlNuevaContraseña.setLayout(pnlNuevaContraseñaLayout);
-        pnlNuevaContraseñaLayout.setHorizontalGroup(
-            pnlNuevaContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlNuevaContraseñaLayout.createSequentialGroup()
-                .addGroup(pnlNuevaContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlNuevaContraseñaLayout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addGroup(pnlNuevaContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(pnlNuevaContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-                            .addComponent(jTextField1)))
-                    .addGroup(pnlNuevaContraseñaLayout.createSequentialGroup()
-                        .addGap(178, 178, 178)
-                        .addComponent(jButton1)))
-                .addContainerGap(187, Short.MAX_VALUE))
-        );
-        pnlNuevaContraseñaLayout.setVerticalGroup(
-            pnlNuevaContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlNuevaContraseñaLayout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addGroup(pnlNuevaContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlNuevaContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addComponent(jButton1)
-                .addContainerGap(102, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(pnlNuevaContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(pnlReseteoContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap()
+                .addComponent(pnlReseteoContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(pnlNuevaContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(pnlReseteoContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap()
+                .addComponent(pnlReseteoContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         pack();
@@ -199,9 +215,8 @@ public class ReseteoContraseña extends javax.swing.JFrame {
         try {
             Pregunta pregunta = new Pregunta(conect.obtenerConexion());
             if (pregunta.respuestaCorrecta(txtUsuario.getText(), txtRespuesta.getText())) {
-                System.out.println("bien");
-                pnlNuevaContraseña.setVisible(true);
-                pnlReseteoContra.setVisible(false);
+                frNuevaContraseña.setVisible(true);
+                pnlNuevaContra.setVisible(true);
             } else {
                 showMessageDialog(null, "Respuesta incorrecta", "Error", ERROR_MESSAGE);
             }
@@ -209,6 +224,35 @@ public class ReseteoContraseña extends javax.swing.JFrame {
             Logger.getLogger(InicioSesion.class.getName()).log(Level.SEVERE, null, e);
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void btnConfirmarContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarContraseñaActionPerformed
+        String contra = "";
+        String contra2 = "";
+        for (int i = 0; i < txtNuevaContraseña.getPassword().length; i++) {
+            contra += txtNuevaContraseña.getPassword()[i];
+        }
+        for (int i = 0; i < txtNuevaContraseña2.getPassword().length; i++) {
+            contra2 += txtNuevaContraseña2.getPassword()[i];
+        }
+        if (contra.equals(contra2)) {
+            PersonaConexion pc = new PersonaConexion(conect.obtenerConexion());
+            try {
+                pc.cambiarContraseña(contra, txtUsuario.getText());
+                showMessageDialog(null, "Contraseña modificada con éxito", "Éxito", INFORMATION_MESSAGE);
+            } catch (SQLException ex) {
+                Logger.getLogger(ReseteoContraseña.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            showMessageDialog(null, "Ambas contraseñas deben ser iguales", "Error", ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnConfirmarContraseñaActionPerformed
+
+    private void btnConfirmarContraseña1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarContraseña1ActionPerformed
+        InicioSesion inicioSesion = new InicioSesion();
+        inicioSesion.setVisible(true);
+        this.setVisible(false);
+        frNuevaContraseña.setVisible(false);
+    }//GEN-LAST:event_btnConfirmarContraseña1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -249,18 +293,44 @@ public class ReseteoContraseña extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
+    private javax.swing.JButton btnConfirmarContraseña;
+    private javax.swing.JButton btnConfirmarContraseña1;
     private javax.swing.JButton btnMostrarPregunta1;
+    private javax.swing.JFrame frNuevaContraseña;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
+    private javax.swing.JLabel lblNuevaContraseña;
+    private javax.swing.JLabel lblNuevaContraseña2;
     private javax.swing.JLabel lblPregunta;
     private javax.swing.JLabel lblResetear;
     private javax.swing.JLabel lblRespuesta;
     private javax.swing.JLabel lblUsuario2;
+    private javax.swing.JPanel pnlNuevaContra;
     private javax.swing.JPanel pnlNuevaContraseña;
+    private javax.swing.JPanel pnlNuevaContraseña1;
+    private javax.swing.JPanel pnlNuevaContraseña2;
+    private javax.swing.JPanel pnlNuevaContraseña3;
     private javax.swing.JPanel pnlReseteoContra;
+    private javax.swing.JPasswordField txtNuevaContraseña;
+    private javax.swing.JPasswordField txtNuevaContraseña2;
     private javax.swing.JTextField txtRespuesta;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables

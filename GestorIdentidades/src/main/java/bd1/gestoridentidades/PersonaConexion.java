@@ -37,4 +37,19 @@ public class PersonaConexion {
         return null;
     }
 
+    public void cambiarContraseña(String contraseña, String usuario) throws SQLException {
+        try ( PreparedStatement st = con.prepareStatement("UPDATE PERSONAS SET hashpwd = ? WHERE nombreUsuario = ?")) {
+            st.setString(1, contraseña);
+            st.setString(2, usuario);
+            st.executeUpdate();
+            /*while (rs.next()) {
+                System.out.println("contra nueva: " + rs.getString("hashpwd"));
+            }*/
+        }
+    }
+
+    boolean contraseñaEsCorrecta(String text, String aString) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

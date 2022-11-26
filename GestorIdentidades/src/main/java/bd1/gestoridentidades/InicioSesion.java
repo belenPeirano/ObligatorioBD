@@ -208,7 +208,9 @@ public class InicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearCuentaMouseClicked
 
     private void btnCambioContraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCambioContraMouseClicked
-        // TODO add your handling code here:
+        NuevaContraseña nuevaContra = new NuevaContraseña();
+        nuevaContra.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnCambioContraMouseClicked
 
 
