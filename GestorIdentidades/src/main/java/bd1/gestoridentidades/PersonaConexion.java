@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JTextField;
 
 /**
  *
@@ -42,13 +43,14 @@ public class PersonaConexion {
             st.setString(1, contraseña);
             st.setString(2, usuario);
             st.executeUpdate();
-            /*while (rs.next()) {
-                System.out.println("contra nueva: " + rs.getString("hashpwd"));
-            }*/
         }
     }
 
     boolean contraseñaEsCorrecta(String text, String aString) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    void CrearPersona(String text, String text0, String text1, String text2, String text3, String aString, String txtUsuario) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

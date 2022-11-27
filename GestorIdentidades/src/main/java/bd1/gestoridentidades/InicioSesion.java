@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package bd1.gestoridentidades;
 
 import java.sql.SQLException;
@@ -204,7 +201,9 @@ public class InicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReseteoContraMouseClicked
 
     private void btnCrearCuentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearCuentaMouseClicked
-        // TODO add your handling code here:
+        CrearCuenta crearCuenta = new CrearCuenta();
+        crearCuenta.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnCrearCuentaMouseClicked
 
     private void btnCambioContraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCambioContraMouseClicked
