@@ -1,12 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package bd1.gestoridentidades;
 
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JPasswordField;
 
 /**
@@ -49,7 +47,7 @@ public class CrearCuenta extends javax.swing.JFrame {
         txtDireccion = new javax.swing.JTextField();
         txtCiudad = new javax.swing.JTextField();
         txtDepartamento = new javax.swing.JTextField();
-        txtUsuario = new javax.swing.JTextField();
+        txtCI = new javax.swing.JTextField();
         txtPregunta = new javax.swing.JTextField();
         txtContraseña = new javax.swing.JPasswordField();
         txtRespuesta = new javax.swing.JPasswordField();
@@ -57,6 +55,7 @@ public class CrearCuenta extends javax.swing.JFrame {
         btnConfirmar = new javax.swing.JButton();
         txtRepitaContra1 = new javax.swing.JPasswordField();
         boxRoles = new javax.swing.JComboBox<>();
+        lblUsuario1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(294, 616));
@@ -78,7 +77,7 @@ public class CrearCuenta extends javax.swing.JFrame {
 
         lblDepartamento.setText("Departamento");
 
-        lblNombreUs.setText("Nombre de Usuario");
+        lblNombreUs.setText("Cedula");
 
         lblRol.setText("Rol de Negocio");
 
@@ -111,6 +110,8 @@ public class CrearCuenta extends javax.swing.JFrame {
         });
 
         boxRoles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Reponedor", "Cajero", "Supervisor", "Contador" }));
+
+        lblUsuario1.setText("(sin puntos ni guión)");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -147,12 +148,14 @@ public class CrearCuenta extends javax.swing.JFrame {
                             .addComponent(txtDireccion)
                             .addComponent(txtCiudad)
                             .addComponent(txtDepartamento)
-                            .addComponent(txtUsuario)
+                            .addComponent(txtCI)
                             .addComponent(txtPregunta)
                             .addComponent(txtRepitaContra1)
                             .addComponent(txtRespuesta)
                             .addComponent(boxRoles, 0, 99, Short.MAX_VALUE))))
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblUsuario1)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,7 +189,8 @@ public class CrearCuenta extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNombreUs)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUsuario1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblContraseña)
@@ -239,10 +243,20 @@ public class CrearCuenta extends javax.swing.JFrame {
         PersonaConexion persona = new PersonaConexion(conect.obtenerConexion());
         Pregunta pregunta = new Pregunta(conect.obtenerConexion());
         try {
-            if (this.aString(txtContraseña).equals(this.aString(txtRepitaContra1))) {
-                persona.CrearPersona(txtNombres.getText(), txtApellidos.getText(), txtDireccion.getText(), txtCiudad.getText(), txtDepartamento.getText(), this.aString(txtContraseña), txtUsuario.getText());
-                pregunta.NuevaPregunta(txtUsuario.getText(), txtPregunta.getText(), this.aString(txtRespuesta));
-                permiso.nuevaSolicitud(txtUsuario.getText(), boxRoles.getSelectedItem().toString());
+            if (this.esCI(txtCI.getText())) {
+                if (!persona.existePersona(Integer.valueOf(txtCI.getText()))) {
+                    if (this.aString(txtContraseña).equals(this.aString(txtRepitaContra1))) {
+                        persona.CrearPersona(txtNombres.getText(), txtApellidos.getText(), txtDireccion.getText(), txtCiudad.getText(), txtDepartamento.getText(), this.aString(txtContraseña), txtCI.getText());
+                        pregunta.NuevaPregunta(txtCI.getText(), txtPregunta.getText(), this.aString(txtRespuesta));
+                        permiso.nuevaSolicitud(txtCI.getText(), boxRoles.getSelectedItem().toString());
+                    } else {
+                        showMessageDialog(null, "Ambas contraseñas deben ser iguales", "Error", ERROR_MESSAGE);
+                    }
+                } else {
+                    showMessageDialog(null, "Esta persona ya se encuentra registrada", "Error", ERROR_MESSAGE);
+                }
+            } else {
+                showMessageDialog(null, "Formato de cedula incorrecto", "Error", ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
             Logger.getLogger(CrearCuenta.class.getName()).log(Level.SEVERE, null, ex);
@@ -257,7 +271,18 @@ public class CrearCuenta extends javax.swing.JFrame {
         }
         return contra;
     }
-    
+
+    private static boolean esCI(String str) {
+        String[] str2 = str.split("");
+        int nums = 0;
+        for (int i = 0; i < str2.length; i++) {
+            if (str2[i].matches("[0-9]")) {
+                nums++;
+            }
+        }
+        return str != null && nums == str2.length;
+    }
+
     ConexionBD conect = new ConexionBD();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -277,7 +302,9 @@ public class CrearCuenta extends javax.swing.JFrame {
     private javax.swing.JLabel lblRepitaContra;
     private javax.swing.JLabel lblRespuesta;
     private javax.swing.JLabel lblRol;
+    private javax.swing.JLabel lblUsuario1;
     private javax.swing.JTextField txtApellidos;
+    private javax.swing.JTextField txtCI;
     private javax.swing.JTextField txtCiudad;
     private javax.swing.JPasswordField txtContraseña;
     private javax.swing.JTextField txtDepartamento;
@@ -286,6 +313,5 @@ public class CrearCuenta extends javax.swing.JFrame {
     private javax.swing.JTextField txtPregunta;
     private javax.swing.JPasswordField txtRepitaContra1;
     private javax.swing.JPasswordField txtRespuesta;
-    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

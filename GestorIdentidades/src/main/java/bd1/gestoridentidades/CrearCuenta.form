@@ -83,7 +83,7 @@
                               <Component id="txtDireccion" alignment="0" max="32767" attributes="0"/>
                               <Component id="txtCiudad" alignment="0" max="32767" attributes="0"/>
                               <Component id="txtDepartamento" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtUsuario" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtCI" alignment="0" max="32767" attributes="0"/>
                               <Component id="txtPregunta" alignment="0" max="32767" attributes="0"/>
                               <Component id="txtRepitaContra1" alignment="0" max="32767" attributes="0"/>
                               <Component id="txtRespuesta" alignment="0" max="32767" attributes="0"/>
@@ -91,7 +91,9 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="140" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblUsuario1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="24" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -133,7 +135,8 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblNombreUs" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtCI" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblUsuario1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -201,7 +204,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblNombreUs">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nombre de Usuario"/>
+            <Property name="text" type="java.lang.String" value="Cedula"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblRol">
@@ -242,7 +245,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDepartamentoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtUsuario">
+        <Component class="javax.swing.JTextField" name="txtCI">
         </Component>
         <Component class="javax.swing.JTextField" name="txtPregunta">
         </Component>
@@ -282,6 +285,11 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblUsuario1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="(sin puntos ni gui&#xf3;n)"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

@@ -19,13 +19,13 @@ public class PersonaConexion {
         this.con = conexion;
     }
 
-    public Persona obtenerPersona(String nombreUs) throws SQLException {
-        try ( PreparedStatement st = con.prepareStatement("SELECT * FROM PERSONAS WHERE nombreUsuario = ?")) {
-            st.setString(1, nombreUs);
+    public Persona obtenerPersona(int userID) throws SQLException {
+        try ( PreparedStatement st = con.prepareStatement("SELECT * FROM PERSONAS WHERE userID = ?")) {
+            st.setInt(1, userID);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 return new Persona(
-                        rs.getString("nombreUsuario"),
+                        rs.getInt("userID"),
                         rs.getString("nombres"),
                         rs.getString("apellidos"),
                         rs.getString("direccion"),
@@ -38,10 +38,10 @@ public class PersonaConexion {
         return null;
     }
 
-    public void cambiarContraseña(String contraseña, String usuario) throws SQLException {
-        try ( PreparedStatement st = con.prepareStatement("UPDATE PERSONAS SET hashpwd = ? WHERE nombreUsuario = ?")) {
+    public void cambiarContraseña(String contraseña, int ci) throws SQLException {
+        try ( PreparedStatement st = con.prepareStatement("UPDATE PERSONAS SET hashpwd = ? WHERE userID = ?")) {
             st.setString(1, contraseña);
-            st.setString(2, usuario);
+            st.setInt(2, ci);
             st.executeUpdate();
         }
     }
@@ -52,6 +52,17 @@ public class PersonaConexion {
 
     void CrearPersona(String text, String text0, String text1, String text2, String text3, String aString, String txtUsuario) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    boolean existePersona(int ci) throws SQLException {
+        try (PreparedStatement st = con.prepareStatement("SELECT * FROM PERSONAS WHERE userID = ?")) {
+            st.setInt(1, ci);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

@@ -1,4 +1,3 @@
-
 package bd1.gestoridentidades;
 
 import java.sql.SQLException;
@@ -30,12 +29,13 @@ public class InicioSesion extends javax.swing.JFrame {
         lblTitulo = new javax.swing.JLabel();
         lblContraseña = new javax.swing.JLabel();
         btnCrearCuenta = new javax.swing.JLabel();
-        txtUsuario = new javax.swing.JTextField();
+        txtCI = new javax.swing.JTextField();
         txtContraseña = new javax.swing.JPasswordField();
         btnIniciarSesion = new javax.swing.JButton();
         lblUsuario = new javax.swing.JLabel();
         btnReseteoContra = new javax.swing.JLabel();
         btnCambioContra = new javax.swing.JLabel();
+        lblUsuario1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,9 +55,9 @@ public class InicioSesion extends javax.swing.JFrame {
             }
         });
 
-        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+        txtCI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuarioActionPerformed(evt);
+                txtCIActionPerformed(evt);
             }
         });
 
@@ -70,7 +70,7 @@ public class InicioSesion extends javax.swing.JFrame {
         });
 
         lblUsuario.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        lblUsuario.setText("Usuario");
+        lblUsuario.setText("Cedula");
 
         btnReseteoContra.setForeground(new java.awt.Color(0, 102, 255));
         btnReseteoContra.setText("Olvidé mi contraseña");
@@ -90,6 +90,8 @@ public class InicioSesion extends javax.swing.JFrame {
             }
         });
 
+        lblUsuario1.setText("(sin puntos ni guión)");
+
         javax.swing.GroupLayout pnlInicioSesionLayout = new javax.swing.GroupLayout(pnlInicioSesion);
         pnlInicioSesion.setLayout(pnlInicioSesionLayout);
         pnlInicioSesionLayout.setHorizontalGroup(
@@ -103,17 +105,19 @@ public class InicioSesion extends javax.swing.JFrame {
                     .addGroup(pnlInicioSesionLayout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(pnlInicioSesionLayout.createSequentialGroup()
-                            .addGap(170, 170, 170)
-                            .addComponent(lblUsuario)
-                            .addGap(11, 11, 11)
-                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(pnlInicioSesionLayout.createSequentialGroup()
-                            .addGap(140, 140, 140)
-                            .addComponent(lblContraseña)
-                            .addGap(14, 14, 14)
-                            .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlInicioSesionLayout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addGroup(pnlInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnlInicioSesionLayout.createSequentialGroup()
+                                .addComponent(lblUsuario)
+                                .addGap(11, 11, 11)
+                                .addComponent(txtCI, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlInicioSesionLayout.createSequentialGroup()
+                                .addComponent(lblContraseña)
+                                .addGap(14, 14, 14)
+                                .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblUsuario1))
                     .addGroup(pnlInicioSesionLayout.createSequentialGroup()
                         .addGap(136, 136, 136)
                         .addComponent(btnReseteoContra)
@@ -131,7 +135,9 @@ public class InicioSesion extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(pnlInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblUsuario)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtCI, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblUsuario1)))
                 .addGap(20, 20, 20)
                 .addGroup(pnlInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblContraseña)
@@ -143,7 +149,7 @@ public class InicioSesion extends javax.swing.JFrame {
                     .addComponent(btnCambioContra))
                 .addGap(34, 34, 34)
                 .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -170,24 +176,27 @@ public class InicioSesion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+    private void txtCIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCIActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuarioActionPerformed
+    }//GEN-LAST:event_txtCIActionPerformed
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         PersonaConexion pc = new PersonaConexion(conect.obtenerConexion());
+
         try {
-            Persona persona = pc.obtenerPersona(txtUsuario.getText());
-            String contra = "";
-            for (int i = 0; i < txtContraseña.getPassword().length; i++) {
-                contra += txtContraseña.getPassword()[i];
-            }
-            if (persona != null && persona.getHashpwd().equalsIgnoreCase(contra)) {
-                System.out.println("existe");
-                
-                pnlInicioSesion.setVisible(false);
+            if (this.esCI(txtCI.getText())) {
+                Persona persona = pc.obtenerPersona(Integer.valueOf(txtCI.getText()));
+                String contra = "";
+                for (int i = 0; i < txtContraseña.getPassword().length; i++) {
+                    contra += txtContraseña.getPassword()[i];
+                }
+                if (persona != null && persona.getHashpwd().equalsIgnoreCase(contra)) {
+                    pnlInicioSesion.setVisible(false);
+                } else {
+                    showMessageDialog(null, "Cedula y/o Contraseña incorrectos", "Error", ERROR_MESSAGE);
+                }
             } else {
-                showMessageDialog(null, "Usuario y/o Contraseña incorrectos", "Error", ERROR_MESSAGE);
+                showMessageDialog(null, "Formato de cedula incorrecto", "Error", ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
             Logger.getLogger(InicioSesion.class.getName()).log(Level.SEVERE, null, ex);
@@ -211,7 +220,6 @@ public class InicioSesion extends javax.swing.JFrame {
         nuevaContra.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnCambioContraMouseClicked
-
 
     public static void main(String args[]) {
         try {
@@ -240,6 +248,17 @@ public class InicioSesion extends javax.swing.JFrame {
         });
     }
 
+    private static boolean esCI(String str) {
+        String[] str2 = str.split("");
+        int nums = 0;
+        for (int i = 0; i < str2.length; i++) {
+            if (str2[i].matches("[0-9]")) {
+                nums++;
+            }
+        }
+        return str != null && nums == str2.length;
+    }
+
     ConexionBD conect = new ConexionBD();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -250,8 +269,9 @@ public class InicioSesion extends javax.swing.JFrame {
     private javax.swing.JLabel lblContraseña;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblUsuario;
+    private javax.swing.JLabel lblUsuario1;
     private javax.swing.JPanel pnlInicioSesion;
+    private javax.swing.JTextField txtCI;
     private javax.swing.JPasswordField txtContraseña;
-    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

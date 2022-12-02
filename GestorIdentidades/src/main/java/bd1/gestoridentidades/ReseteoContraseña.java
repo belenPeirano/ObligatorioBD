@@ -1,4 +1,3 @@
-
 package bd1.gestoridentidades;
 
 import java.sql.SQLException;
@@ -44,12 +43,12 @@ public class ReseteoContraseña extends javax.swing.JFrame {
         lblRespuesta = new javax.swing.JLabel();
         lblPregunta = new javax.swing.JLabel();
         lblUsuario2 = new javax.swing.JLabel();
-        txtUsuario = new javax.swing.JTextField();
+        txtCI = new javax.swing.JTextField();
         btnMostrarPregunta1 = new javax.swing.JButton();
         btnConfirmar = new javax.swing.JButton();
+        lblUsuario1 = new javax.swing.JLabel();
 
         frNuevaContraseña.setMinimumSize(new java.awt.Dimension(538, 380));
-        frNuevaContraseña.setPreferredSize(new java.awt.Dimension(538, 380));
         frNuevaContraseña.setResizable(false);
         frNuevaContraseña.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -134,19 +133,19 @@ public class ReseteoContraseña extends javax.swing.JFrame {
         pnlReseteoContra.add(lblRespuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
 
         lblPregunta.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        pnlReseteoContra.add(lblPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 420, 40));
+        pnlReseteoContra.add(lblPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 290, 40));
 
         lblUsuario2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        lblUsuario2.setText("Usuario");
+        lblUsuario2.setText("Cedula");
         pnlReseteoContra.add(lblUsuario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
-        txtUsuario.setToolTipText("Ingrese nombre de usuario");
-        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+        txtCI.setToolTipText("Ingrese nombre de usuario");
+        txtCI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuarioActionPerformed(evt);
+                txtCIActionPerformed(evt);
             }
         });
-        pnlReseteoContra.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 211, 30));
+        pnlReseteoContra.add(txtCI, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 211, 30));
 
         btnMostrarPregunta1.setText("Mostrar Pregunta");
         btnMostrarPregunta1.addActionListener(new java.awt.event.ActionListener() {
@@ -154,7 +153,7 @@ public class ReseteoContraseña extends javax.swing.JFrame {
                 btnMostrarPregunta1ActionPerformed(evt);
             }
         });
-        pnlReseteoContra.add(btnMostrarPregunta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, -1, -1));
+        pnlReseteoContra.add(btnMostrarPregunta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 170, -1, -1));
 
         btnConfirmar.setText("Confirmar");
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
@@ -164,21 +163,23 @@ public class ReseteoContraseña extends javax.swing.JFrame {
         });
         pnlReseteoContra.add(btnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 304, -1, -1));
 
+        lblUsuario1.setText("(sin puntos ni guión)");
+        pnlReseteoContra.add(lblUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlReseteoContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addComponent(pnlReseteoContra, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlReseteoContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addComponent(pnlReseteoContra, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE))
         );
 
         pack();
@@ -188,20 +189,25 @@ public class ReseteoContraseña extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRespuestaActionPerformed
 
-    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+    private void txtCIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCIActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuarioActionPerformed
+    }//GEN-LAST:event_txtCIActionPerformed
 
     private void btnMostrarPregunta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarPregunta1ActionPerformed
         PersonaConexion pc = new PersonaConexion(conect.obtenerConexion());
         try {
-            Persona persona = pc.obtenerPersona(txtUsuario.getText());
+            if (this.esCI(txtCI.getText())) {
+                Persona persona = pc.obtenerPersona(Integer.valueOf(txtCI.getText()));
 
-            if (persona != null) {
-                Pregunta pregunta = new Pregunta(conect.obtenerConexion());
-                lblPregunta.setText(pregunta.obtenerPregunta(txtUsuario.getText()));
+                if (persona != null) {
+                    System.out.println("entra");
+                    Pregunta pregunta = new Pregunta(conect.obtenerConexion());
+                    lblPregunta.setText(pregunta.obtenerPregunta(Integer.valueOf(txtCI.getText())));
+                } else {
+                    showMessageDialog(null, "Uario incorrecto", "Error", ERROR_MESSAGE);
+                }
             } else {
-                showMessageDialog(null, "Usuario incorrecto", "Error", ERROR_MESSAGE);
+                showMessageDialog(null, "Formato de cedula incorrecto", "Error", ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
             Logger.getLogger(InicioSesion.class.getName()).log(Level.SEVERE, null, ex);
@@ -211,7 +217,7 @@ public class ReseteoContraseña extends javax.swing.JFrame {
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         try {
             Pregunta pregunta = new Pregunta(conect.obtenerConexion());
-            if (pregunta.respuestaCorrecta(txtUsuario.getText(), txtRespuesta.getText())) {
+            if (pregunta.respuestaCorrecta(Integer.valueOf(txtCI.getText()), txtRespuesta.getText())) {
                 frNuevaContraseña.setVisible(true);
                 pnlNuevaContra.setVisible(true);
             } else {
@@ -234,7 +240,7 @@ public class ReseteoContraseña extends javax.swing.JFrame {
         if (contra.equals(contra2)) {
             PersonaConexion pc = new PersonaConexion(conect.obtenerConexion());
             try {
-                pc.cambiarContraseña(contra, txtUsuario.getText());
+                pc.cambiarContraseña(contra, Integer.valueOf(txtCI.getText()));
                 showMessageDialog(null, "Contraseña modificada con éxito", "Éxito", INFORMATION_MESSAGE);
             } catch (SQLException ex) {
                 Logger.getLogger(ReseteoContraseña.class.getName()).log(Level.SEVERE, null, ex);
@@ -251,6 +257,17 @@ public class ReseteoContraseña extends javax.swing.JFrame {
         frNuevaContraseña.setVisible(false);
     }//GEN-LAST:event_btnConfirmarContraseña1ActionPerformed
 
+    private static boolean esCI(String str) {
+        String[] str2 = str.split("");
+        int nums = 0;
+        for (int i = 0; i < str2.length; i++) {
+            if (str2[i].matches("[0-9]")) {
+                nums++;
+            }
+        }
+        return str != null && nums == str2.length;
+    }
+
     ConexionBD conect = new ConexionBD();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -259,41 +276,18 @@ public class ReseteoContraseña extends javax.swing.JFrame {
     private javax.swing.JButton btnConfirmarContraseña1;
     private javax.swing.JButton btnMostrarPregunta1;
     private javax.swing.JFrame frNuevaContraseña;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JLabel lblNuevaContraseña;
     private javax.swing.JLabel lblNuevaContraseña2;
     private javax.swing.JLabel lblPregunta;
     private javax.swing.JLabel lblResetear;
     private javax.swing.JLabel lblRespuesta;
+    private javax.swing.JLabel lblUsuario1;
     private javax.swing.JLabel lblUsuario2;
     private javax.swing.JPanel pnlNuevaContra;
-    private javax.swing.JPanel pnlNuevaContraseña;
-    private javax.swing.JPanel pnlNuevaContraseña1;
-    private javax.swing.JPanel pnlNuevaContraseña2;
-    private javax.swing.JPanel pnlNuevaContraseña3;
     private javax.swing.JPanel pnlReseteoContra;
+    private javax.swing.JTextField txtCI;
     private javax.swing.JPasswordField txtNuevaContraseña;
     private javax.swing.JPasswordField txtNuevaContraseña2;
     private javax.swing.JTextField txtRespuesta;
-    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

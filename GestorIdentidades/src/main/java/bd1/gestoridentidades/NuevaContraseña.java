@@ -1,6 +1,6 @@
-
 package bd1.gestoridentidades;
 
+import com.mysql.cj.util.StringUtils;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,8 +41,9 @@ public class NuevaContraseña extends javax.swing.JFrame {
         lblContraseñaActual = new javax.swing.JLabel();
         txtContraseñaActual = new javax.swing.JPasswordField();
         lblUsuario = new javax.swing.JLabel();
-        txtUsuario = new javax.swing.JTextField();
+        txtCI = new javax.swing.JTextField();
         lblResetear = new javax.swing.JLabel();
+        lblUsuario1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,17 +67,19 @@ public class NuevaContraseña extends javax.swing.JFrame {
 
         lblContraseñaActual.setText("Contraseña Actual");
 
-        lblUsuario.setText("Usuario");
+        lblUsuario.setText("Cedula");
 
-        txtUsuario.setToolTipText("Ingrese nombre de usuario");
-        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+        txtCI.setToolTipText("Ingrese nombre de usuario");
+        txtCI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuarioActionPerformed(evt);
+                txtCIActionPerformed(evt);
             }
         });
 
         lblResetear.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblResetear.setText("Cambiar Contraseña");
+
+        lblUsuario1.setText("(sin puntos ni guión)");
 
         javax.swing.GroupLayout pnlNuevaContraseñaLayout = new javax.swing.GroupLayout(pnlNuevaContraseña);
         pnlNuevaContraseña.setLayout(pnlNuevaContraseñaLayout);
@@ -102,7 +105,10 @@ public class NuevaContraseña extends javax.swing.JFrame {
                             .addComponent(txtNuevaContraseña2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNuevaContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtContraseñaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(pnlNuevaContraseñaLayout.createSequentialGroup()
+                                .addComponent(txtCI, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblUsuario1))))
                     .addGroup(pnlNuevaContraseñaLayout.createSequentialGroup()
                         .addGap(81, 81, 81)
                         .addComponent(lblResetear))
@@ -111,7 +117,7 @@ public class NuevaContraseña extends javax.swing.JFrame {
                         .addComponent(btnConfirmarContraseña)
                         .addGap(56, 56, 56)
                         .addComponent(btnInicioSesion)))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlNuevaContraseñaLayout.setVerticalGroup(
             pnlNuevaContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,8 +126,9 @@ public class NuevaContraseña extends javax.swing.JFrame {
                 .addComponent(lblResetear)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(pnlNuevaContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUsuario))
+                    .addComponent(txtCI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUsuario)
+                    .addComponent(lblUsuario1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(pnlNuevaContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtContraseñaActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -145,7 +152,7 @@ public class NuevaContraseña extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 423, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(pnlNuevaContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -163,23 +170,24 @@ public class NuevaContraseña extends javax.swing.JFrame {
         PersonaConexion pc = new PersonaConexion(conect.obtenerConexion());
 
         try {
-            Persona persona = pc.obtenerPersona(txtUsuario.getText());
-            if (persona != null && persona.getHashpwd().equalsIgnoreCase(this.aString(txtContraseñaActual))) {
-                if (this.aString(txtNuevaContraseña).equals(this.aString(txtNuevaContraseña2))) {
-                    pc.cambiarContraseña(this.aString(txtNuevaContraseña), txtUsuario.getText());
-                    showMessageDialog(null, "Contraseña modificada con éxito", "Éxito", INFORMATION_MESSAGE);
+            if (this.esCI(txtCI.getText())) {
+                Persona persona = pc.obtenerPersona(Integer.valueOf(txtCI.getText()));
+                if (persona != null && persona.getHashpwd().equalsIgnoreCase(this.aString(txtContraseñaActual))) {
+                    if (this.aString(txtNuevaContraseña).equals(this.aString(txtNuevaContraseña2))) {
+                        pc.cambiarContraseña(this.aString(txtNuevaContraseña), Integer.valueOf(txtCI.getText()));
+                        showMessageDialog(null, "Contraseña modificada con éxito", "Éxito", INFORMATION_MESSAGE);
+                    } else {
+                        showMessageDialog(null, "Ambas contraseñas deben ser iguales", "Error", ERROR_MESSAGE);
+                    }
                 } else {
-                    showMessageDialog(null, "Ambas contraseñas deben ser iguales", "Error", ERROR_MESSAGE);
+                    showMessageDialog(null, "Usuario y/o Contraseña incorrectos", "Error", ERROR_MESSAGE);
                 }
             } else {
-                showMessageDialog(null, "Usuario y/o Contraseña incorrectos", "Error", ERROR_MESSAGE);
+                showMessageDialog(null, "Formato de cedula incorrecto", "Error", ERROR_MESSAGE);
             }
-
         } catch (SQLException ex) {
             Logger.getLogger(NuevaContraseña.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-
     }//GEN-LAST:event_btnConfirmarContraseñaActionPerformed
 
     private void btnInicioSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioSesionActionPerformed
@@ -188,9 +196,9 @@ public class NuevaContraseña extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnInicioSesionActionPerformed
 
-    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+    private void txtCIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCIActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuarioActionPerformed
+    }//GEN-LAST:event_txtCIActionPerformed
 
     public static String aString(JPasswordField contraseña) {
         String contra = "";
@@ -200,6 +208,17 @@ public class NuevaContraseña extends javax.swing.JFrame {
         return contra;
     }
 
+    private static boolean esCI(String str) {
+        String[] str2 = str.split("");
+        int nums = 0;
+        for (int i = 0; i < str2.length; i++) {
+            if (str2[i].matches("[0-9]")) {
+                nums++;
+            }
+        }
+        return str != null && nums == str2.length;
+    }
+    
     ConexionBD conect = new ConexionBD();
 
 
@@ -211,10 +230,11 @@ public class NuevaContraseña extends javax.swing.JFrame {
     private javax.swing.JLabel lblNuevaContraseña2;
     private javax.swing.JLabel lblResetear;
     private javax.swing.JLabel lblUsuario;
+    private javax.swing.JLabel lblUsuario1;
     private javax.swing.JPanel pnlNuevaContraseña;
+    private javax.swing.JTextField txtCI;
     private javax.swing.JPasswordField txtContraseñaActual;
     private javax.swing.JPasswordField txtNuevaContraseña;
     private javax.swing.JPasswordField txtNuevaContraseña2;
-    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

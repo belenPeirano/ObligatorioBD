@@ -12,17 +12,17 @@ import java.sql.Statement;
  */
 public class Persona {
 
+    public int ci;
     public String nombres;
-    public String nombreUsuario;
     public String apellidos; 
     public String direccion; 
     public String ciudad; 
     public String departamento; 
     public String hashpwd;
 
-    public Persona(String nombreUsuario, String nombres, String apellidos, String direccion, String ciudad, String departamento, String hashpwd) {
+    public Persona(int ci, String nombres, String apellidos, String direccion, String ciudad, String departamento, String hashpwd) {
         this.nombres = nombres;
-        this.nombreUsuario = nombreUsuario;
+        this.ci = ci;
         this.apellidos = apellidos;
         this.direccion = direccion;
         this.ciudad = ciudad;
@@ -30,8 +30,6 @@ public class Persona {
         this.hashpwd = hashpwd;
     }
     
-    
-
     public void setHashpwd(String hashpwd) {
         this.hashpwd = hashpwd;
     }
@@ -39,8 +37,4 @@ public class Persona {
     public String getHashpwd() {
         return hashpwd;
     }
- 
-    
-
-
 }
